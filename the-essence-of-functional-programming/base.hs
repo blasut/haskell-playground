@@ -17,11 +17,11 @@ type Environment = [(Name, Value)]
 
 showval :: Value -> String
 showval Wrong = "<wrong>"
-showval (Num i) = showint i
+showval (Num i) = show i
 showval (Fun f) = "<function>"
 
 interp :: Term -> Environment -> M Value
-interp (Var x) e = lookup x e
+interp (Var x) e = Main.lookup x e
 interp (Con i) e = unitM (Num i)
 interp (Add u v) e = interp u e `bindM` (\a ->
                                             interp v e `bindM` (\b ->
@@ -33,7 +33,7 @@ interp (App t u) e = interp t e `bindM` (\f ->
 
 lookup :: Name -> Environment -> M Value
 lookup x [] = unitM Wrong
-lookup x ((y,b):e) = if x==y then unitM b else lookup x e
+lookup x ((y,b):e) = if x==y then unitM b else Main.lookup x e
 
 add :: Value -> Value -> M Value
 add (Num i) (Num j) = unitM (Num (i+j))
