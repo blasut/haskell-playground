@@ -17,6 +17,9 @@ showE (Error s) = "Error: " ++ s
 term0 = (App (Lam "x" (Add (Var "x") (Var "x")))
          (Add (Con 10) (Con 11)))
 
+term1 = (App (Con 1) (Con 2))
+
+
 type Name = String
 
 data Term = Var Name
@@ -61,3 +64,4 @@ apply f a = errorE("should be function: " ++ showval f)
 
 test :: Term -> String
 test t = showE (interp t [])
+
