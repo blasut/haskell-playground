@@ -11,7 +11,7 @@ data Term = Var Name
 
 data Value = Wrong
              | Num Int
-             | Fun (Value -> Value)
+             | Fun (Value -> M Value)
 
 type Environment = [(Name, Value)]
 
