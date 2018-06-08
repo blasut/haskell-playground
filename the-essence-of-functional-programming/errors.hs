@@ -1,10 +1,16 @@
+
+
 data E a = Success a | Error String
+
+unitE :: a -> E a
 unitE a = Success a
 errorE s = Error s
 
+bindE :: E a -> (a -> E b) -> E b
 (Success a) `bindE` k = k a
 (Error s) `bindE` k = Error s
 
+showE :: E Value -> String
 showE (Success a) = "Success: " ++ showval a
 showE (Error s) = "Error: " ++ s
 

@@ -1,3 +1,7 @@
+unitM :: a -> M a
+bindM :: M a -> (a -> M b) -> M b
+showM :: M Value -> String
+
 term0 = (App (Lam "x" (Add (Var "x") (Var "x")))
          (Add (Con 10) (Con 11)))
 
